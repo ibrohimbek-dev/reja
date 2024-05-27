@@ -1,24 +1,35 @@
-// 2024-05-25
-// MIT 14 TASK-C
+// 2024-05-28
+// MIT 14 TASK D
 
-// Shop nomli class tuzing, va bu class 3 xil parametr qabul qilsin.
-// Hamda classning quyidagdek 3'ta metodi bo'lsin:
+// Ikkita parametra ega function tuzing, va functioning
+// berilgan birinchi va ikkinchi parametr qiymatlari o'zaro to'liq
+// mos kelsa true qiymat qaytarsin
 
-// 1) qoldiq
-// 2) sotish
-// 3) qabul
+// Masalan: checkContent("mitgroup", "gmtiprou");
+// Yuqoridagi misolda birinchi va ikkinchi parametr qiymatli bir xil
+// ya'ni bir xil harflar qatnashganligi uchun true qiymat qaytaradi.
 
-// Har bir metod ishga tushgan vaqtda log qilinsin
+// ----------------------------------------------------------------
+console.log("----------------------------------------------------------------");
+console.log("METHOD ONE:");
 
-// MASALAN:
-// const shop = new Shop(4, 5, 2)
+const checkContent_1 = (match, text) => {
+	return text.split("").every((txt) => match.includes(txt));
+};
 
-// shop.qoldiq();
-// natija qaytishi kerak: Hozir 20: 40'da 4'ta non, 5'ta lag'mon va 2'ta cola mavjud
+const result_1 = checkContent_1("mitgroup", "gmtiprou");
+console.log("Same text? => ", result_1);
 
-// shop.sotish("non", 3); & shop.qabul("cola", 4); & shop.qoldiq();
-// Natija qaytishi kerak: Hozir 20:50da 1ta non, 5ta lag'mon va 6ta cola mavjud!
+// ----------------------------------------------------------------
+console.log("----------------------------------------------------------------");
+console.log("METHOD TWO:");
 
-// --------------------------------------------------------------------------------
-console.log("--------------------------------------------------------");
-console.log("METHOD ONE");
+const checkContent_2 = (match, text) => {
+	return text.split("").filter((txt) => !match.includes(txt)).length > 0
+		? false
+		: true;
+};
+
+const result_2 = checkContent_2("mitgroup", "gmtiprouooooo");
+console.log("Same text? => ", result_2);
+
