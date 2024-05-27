@@ -93,10 +93,16 @@ document.addEventListener("click", (event) => {
 });
 
 // Delete all item (delete)
-deleteAll.addEventListener("click", (event) => {
-	axios.post("/delete-all", { delete_all: true }).then((response) => {
-		alert(response.data.state);
-
-		document.location.reload();
-	});
+document.getElementById("delete-all").addEventListener("click", function () {
+	axios
+		.post("/delete-all", { delete_all: true })
+		.then((response) => {
+			alert(response.data.state);
+			document.querySelectorAll(".list-group-item").forEach((item) => {
+				item.remove();
+			});
+		})
+		.catch((err) => {
+			console.log("Please, try again later!");
+		});
 });
