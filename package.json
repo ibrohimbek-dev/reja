@@ -1,0 +1,25 @@
+{
+	"name": "reja",
+	"version": "1.0.0",
+	"description": "devex 28th lesson",
+	"main": "server.js",
+	"scripts": {
+		"start": "nodemon server.js",
+		"dev": "node server.js",
+		"train": "nodemon train.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Ibrohimbek Alisherov",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^16.3.1",
+		"ejs": "^3.1.10",
+		"express": "^4.19.2",
+		"moment": "^2.30.1",
+		"mongodb": "^3.2.6"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.0"
+	}
+}
