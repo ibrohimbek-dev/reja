@@ -29,6 +29,3 @@ mongodb.connect(
 		}
 	}
 );
-
-
-console.log('hI')
