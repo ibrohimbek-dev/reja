@@ -20,19 +20,7 @@ app.set("view engine", "ejs");
 
 // 4 session (route codes):
 
-// post item
-app.post("/create-item", (req, res) => {
-	// STEP 2
-	const new_plan = req.body.plan;
-	console.log("new_plan: ", new_plan);
-	// STEP 3
-	db.collection("plan").insertOne({ plan: new_plan }, (err, data) => {
-		console.log("DATA.OPS APP.JS: ", data.ops);
-		res.json(data.ops[0]);
-	});
-});
-
-// get item
+// get all items
 app.get("/", (req, res) => {
 	db.collection("plan")
 		.find()
@@ -47,7 +35,19 @@ app.get("/", (req, res) => {
 		});
 });
 
-// delete item
+// post an item
+app.post("/create-item", (req, res) => {
+	// STEP 2
+	const new_plan = req.body.plan;
+	console.log("new_plan: ", new_plan);
+	// STEP 3
+	db.collection("plan").insertOne({ plan: new_plan }, (err, data) => {
+		console.log("DATA.OPS APP.JS: ", data.ops);
+		res.json(data.ops[0]);
+	});
+});
+
+// delete an item
 app.post("/delete-item", (req, res) => {
 	const id = req.body.id;
 	console.log("deletion id: ", id);
@@ -65,6 +65,31 @@ app.post("/delete-item", (req, res) => {
 			}
 		}
 	);
+});
+
+// edit an item
+app.post("/edit-item", (req, res) => {
+	const data = req.body;
+	console.log(data);
+
+	db.collection("plan").findOneAndUpdate(
+		{
+			_id: new mongodb.ObjectId(data.id),
+		},
+		{ $set: { plan: data.new_input } },
+		(err, data) => {
+			res.json({ state: "success" });
+		}
+	);
+});
+
+// delete all item at once
+app.post("/delete-all", (req, res) => {
+	if (req.body.delete_all) {
+		db.collection("plan").deleteMany(() => {
+			res.json({ state: "All plans are deleted successfully" });
+		});
+	}
 });
 
 module.exports = app;

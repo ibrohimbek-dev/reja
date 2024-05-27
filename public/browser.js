@@ -1,6 +1,10 @@
 // console.log("Frontend JS is working");
 
 const createForm = document.getElementById("create-form");
+const itemText = document.querySelector(".item-text");
+const itemList = document.getElementById("item-list");
+const deleteAll = document.getElementById("delete-all");
+
 let createField = document.getElementById("create-field");
 
 const itemTemplate = (data) => {
@@ -22,7 +26,7 @@ const itemTemplate = (data) => {
 
 // FRONTEND => BACKEND => DATABASE => BACKEND => FRONTEND
 
-// Add Item (post)
+// Add an item (post)
 createForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
@@ -31,12 +35,10 @@ createForm.addEventListener("submit", (event) => {
 		// STEP 1
 		.then((response) => {
 			// STEP 4
-			console.log("DATA: ", response);
+			// console.log("DATA: ", response);
 
 			// STEP 5
-			document
-				.getElementById("item-list")
-				.insertAdjacentHTML("beforeend", itemTemplate(response.data));
+			itemList.insertAdjacentHTML("beforeend", itemTemplate(response.data));
 			createField.value = "";
 			createField.focus();
 		})
@@ -45,7 +47,7 @@ createForm.addEventListener("submit", (event) => {
 		});
 });
 
-// Delete Item (delete)
+// Delete single item (delete)
 document.addEventListener("click", (event) => {
 	// delete operation
 	if (event.target.classList.contains("delete-me")) {
@@ -53,7 +55,6 @@ document.addEventListener("click", (event) => {
 			axios
 				.post("/delete-item", { id: event.target.getAttribute("data-id") })
 				.then((response) => {
-					console.log(response.data);
 					event.target.parentElement.parentElement.remove();
 				})
 				.catch((err) => {
@@ -64,6 +65,38 @@ document.addEventListener("click", (event) => {
 
 	// edit operation
 	if (event.target.classList.contains("edit-me")) {
-		console.log("You clicked edit button");
+		let userInput = prompt(
+			"Add something new or modify it!",
+			event.target.parentElement.parentElement
+				.querySelector(".item-text")
+				.innerHTML.trim()
+		);
+
+		if (userInput) {
+			axios
+				.post("/edit-item", {
+					id: event.target.getAttribute("data-id"),
+					new_input: userInput,
+				})
+				.then((response) => {
+					console.log(response.data);
+
+					event.target.parentElement.parentElement.querySelector(
+						".item-text"
+					).innerHTML = userInput;
+				})
+				.catch((err) => {
+					console.log("Please, try again later!");
+				});
+		}
 	}
+});
+
+// Delete all item (delete)
+deleteAll.addEventListener("click", (event) => {
+	axios.post("/delete-all", { delete_all: true }).then((response) => {
+		alert(response.data.state);
+
+		document.location.reload();
+	});
 });
