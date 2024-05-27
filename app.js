@@ -1,5 +1,5 @@
-// 2024-05-25:
-// Lesson 27h
+// 2024-05-27:
+// Lesson 28h
 // Delete Plans
 
 // import main module & packages:
@@ -69,5 +69,5 @@ app.post("/delete-item", (req, res) => {
 
 module.exports = app;
 
-// 27 - dars shu yerda yakunlandi
+// 28 - dars shu yerda yakunlandi
 // 수고 하셨습니다!
