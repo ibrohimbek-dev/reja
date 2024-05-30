@@ -22,7 +22,8 @@ mongodb.connect(
 			const app = require("./app");
 			const server = http.createServer(app);
 
-			const PORT = 3000;
+			// const PORT = 3000; for simple github repo
+			const PORT = 3041; // for server deployment
 			server.listen(process.env.PORT || PORT, (err, res) => {
 				console.log(`Server is running on port: ${PORT}`);
 			});
