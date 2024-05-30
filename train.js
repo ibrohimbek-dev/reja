@@ -9,27 +9,47 @@
 // Yuqoridagi misolda birinchi va ikkinchi parametr qiymatli bir xil
 // ya'ni bir xil harflar qatnashganligi uchun true qiymat qaytaradi.
 
-// ----------------------------------------------------------------
-console.log("----------------------------------------------------------------");
-console.log("METHOD ONE:");
+// // ----------------------------------------------------------------
+// console.log("----------------------------------------------------------------");
+// console.log("METHOD ONE:");
 
-const checkContent_1 = (match, text) => {
-	return text.split("").every((txt) => match.includes(txt));
+// const checkContent_1 = (match, text) => {
+// 	return text.split("").every((txt) => match.includes(txt));
+// };
+
+// const result_1 = checkContent_1("mitgroup", "gmtiprou");
+// console.log("Same text? => ", result_1);
+
+// // ----------------------------------------------------------------
+// console.log("----------------------------------------------------------------");
+// console.log("METHOD TWO:");
+
+// const checkContent_2 = (match, text) => {
+// 	return text.split("").filter((txt) => !match.includes(txt)).length > 0
+// 		? false
+// 		: true;
+// };
+
+// const result_2 = checkContent_2("mitgroup", "gmtiprouooooo");
+// console.log("Same text? => ", result_2);
+
+// -------------------------------------------------------------------
+console.log("------------------------------------------------------");
+console.log("TASK E");
+
+// 2024-05-30
+// MIT 14 TASK E
+
+// Shunday function tuzing, u bitta string argumentini qabul qilib,
+// qabul qilingan stringni teskari ko'rinishda return qilsin
+
+// MASALAN: getReverse("hello"); return qilsin "olleh"
+
+const text = "hello";
+
+const getReverse = (txt) => {
+	return txt.split("").reverse().join("");
 };
 
-const result_1 = checkContent_1("mitgroup", "gmtiprou");
-console.log("Same text? => ", result_1);
-
-// ----------------------------------------------------------------
-console.log("----------------------------------------------------------------");
-console.log("METHOD TWO:");
-
-const checkContent_2 = (match, text) => {
-	return text.split("").filter((txt) => !match.includes(txt)).length > 0
-		? false
-		: true;
-};
-
-const result_2 = checkContent_2("mitgroup", "gmtiprouooooo");
-console.log("Same text? => ", result_2);
-
+const result = getReverse(text);
+console.log(`${text} is reversed as '${result}'`);
