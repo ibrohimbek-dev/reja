@@ -22,6 +22,7 @@ app.set("view engine", "ejs");
 
 // get all items
 app.get("/", (req, res) => {
+	console.log("user entered /");
 	db.collection("plan")
 		.find()
 		.toArray((err, data) => {
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 
 // post an item
 app.post("/create-item", (req, res) => {
+	console.log("user entered /create-item");
 	// STEP 2
 	const new_plan = req.body.plan;
 	console.log("new_plan: ", new_plan);
@@ -49,6 +51,7 @@ app.post("/create-item", (req, res) => {
 
 // delete an item
 app.post("/delete-item", (req, res) => {
+	console.log("user entered /delete-item");
 	const id = req.body.id;
 	console.log("deletion id: ", id);
 
@@ -69,6 +72,7 @@ app.post("/delete-item", (req, res) => {
 
 // edit an item
 app.post("/edit-item", (req, res) => {
+	console.log("user entered /edit-item");
 	const data = req.body;
 	console.log(data);
 
@@ -85,6 +89,7 @@ app.post("/edit-item", (req, res) => {
 
 // delete all item at once
 app.post("/delete-all", (req, res) => {
+	console.log("user entered /delete-all");
 	if (req.body.delete_all) {
 		db.collection("plan").deleteMany(() => {
 			res.json({ state: "All plans are deleted successfully" });
