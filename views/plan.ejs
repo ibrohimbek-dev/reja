@@ -18,7 +18,7 @@
 			<h1 class="display-4 text-center py-1">Plans and Goals</h1>
 				<p>Author Brian</p>
 			<div class="jumbotron p-3 mb-2 shadow-sm">
-				<form id="create-form" action="/create-item" method="POST">
+				<form id="create-form" onsubmit="return validateInput()"  action="/create-item" method="POST">
 					<div class="d-flex align-items-center">
 						<input type="text" style="flex: 1; margin-right: 10px;" id="create-field" name="plan" autofocus
 							autocomplete="off" class="form-control mr-3" />
